@@ -8,7 +8,6 @@ import subprocess
 import pygetwindow as gw
 import win32com.client as win32
 from datetime import datetime, timedelta
-from helpers import load_config
 
 # Define the SapGui class
 
@@ -50,18 +49,15 @@ class SapGui():
         """
         try:
 
-            # Load configuration settings
-            config = load_config()
-
             # Initialize instance variables for SAP configurations
             self.system = sap_args["platform"]
-            self.client = config['sap_client']
+            self.client = sap_args['sap_client']
             self.user = sap_args["username"]
             self.password = sap_args["password"]
-            self.language = config['sap_language']
+            self.language = sap_args['sap_language']
 
             # Path to SAPLogon executable
-            self.path = config['sap_path']
+            self.path = sap_args['sap_path']
 
             # Open SAPLogon
             subprocess.Popen(self.path)
